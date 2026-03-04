@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FITRUN</string>
+    <string name="title_add_run">Let\'s Share Your Journey!</string>
+    <string name="hint_tanggal">Tanggal</string>
+    <string name="hint_waktu">Waktu Lari</string>
+    <string name="hint_durasi">Durasi (menit)</string>
+    <string name="btn_save">SAVE</string>
+    <string name="error_empty">Semua field harus diisi!</string>
+    <string name="success_save">Run berhasil disimpan</string>
+
+    <string name="formatted_date">%1$d/%2$d/%3$d</string>
+    <string name="formatted_time">%1$02d:%2$02d</string>
 </resources>

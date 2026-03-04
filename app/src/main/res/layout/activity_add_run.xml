@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Let's Share Your Journey!"
+            android:text="@string/title_add_run"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_gravity="center"
@@ -40,7 +40,7 @@
                     android:id="@+id/etTanggal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tanggal"
+                    android:hint="@string/hint_tanggal"
                     android:focusable="false"
                     android:clickable="true"
                     android:padding="12dp"
@@ -51,7 +51,7 @@
                     android:id="@+id/etWaktu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Waktu Lari"
+                    android:hint="@string/hint_waktu"
                     android:focusable="false"
                     android:clickable="true"
                     android:padding="12dp"
@@ -62,7 +62,7 @@
                     android:id="@+id/etDurasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Durasi (menit)"
+                    android:hint="@string/hint_durasi"
                     android:inputType="number"
                     android:padding="12dp"
                     android:layout_marginBottom="24dp"/>
@@ -72,7 +72,7 @@
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="SAVE"
+                    android:text="@string/btn_save"
                     android:backgroundTint="#4CAF50"
                     android:textColor="@android:color/white"/>
 
