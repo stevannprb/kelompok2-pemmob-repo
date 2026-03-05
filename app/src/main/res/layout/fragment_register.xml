@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/schemas/tools"
+    xmlns:tools2="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
@@ -13,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="FITRUN"
+        android:text="@string/fitrun"
         android:textSize="36sp"
         android:textStyle="bold|italic"
         android:textColor="@color/black"
@@ -26,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Mulai Perjalanan Larimu Hari Ini!"
+        android:text="@string/mulai_perjalanan_larimu_hari_ini"
         android:textSize="16sp"
         android:textColor="#666666"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:hint="Nama Lengkap"
+        android:hint="@string/nama_lengkap"
         app:startIconDrawable="@android:drawable/ic_menu_myplaces"
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitle">
 
@@ -47,7 +48,8 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools2:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Email"
+        android:hint="@string/email"
         app:startIconDrawable="@android:drawable/ic_dialog_email"
         app:layout_constraintTop_toBottomOf="@+id/tilName">
 
@@ -64,7 +66,8 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            tools2:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Password"
+        android:hint="@string/password"
         app:endIconMode="password_toggle"
         app:startIconDrawable="@android:drawable/ic_secure"
         app:layout_constraintTop_toBottomOf="@+id/tilEmail">
@@ -82,7 +85,8 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools2:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -90,12 +94,13 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
-        android:text="DAFTAR SEKARANG"
+        android:text="@string/daftar_sekarang"
         android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword"
-        tools:layout_editor_absoluteX="32dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools2:ignore="VisualLintButtonSize" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -109,14 +114,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sudah punya akun? "
+            android:text="@string/sudah_punya_akun"
             android:textColor="#666666" />
 
         <TextView
             android:id="@+id/tvLoginHere"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Masuk di sini"
+            android:text="@string/masuk_di_sini"
             android:textColor="@color/black"
             android:textStyle="bold" />
     </LinearLayout>
