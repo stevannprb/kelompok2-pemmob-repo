@@ -10,4 +10,6 @@
 
     <string name="formatted_date">%1$d/%2$d/%3$d</string>
     <string name="formatted_time">%1$02d:%2$02d</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
