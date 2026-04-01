@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">FITRUN</string>
-    <string name="title_add_run">Let\'s Share Your Journey!</string>
+    <string name="title_add_run">Ayo bagikan perjalananmu!</string>
     <string name="hint_tanggal">Tanggal</string>
     <string name="hint_waktu">Waktu Lari</string>
     <string name="hint_durasi">Durasi (menit)</string>
-    <string name="btn_save">SAVE</string>
+    <string name="btn_save">SIMPAN</string>
     <string name="error_empty">Semua field harus diisi!</string>
     <string name="success_save">Run berhasil disimpan</string>
 

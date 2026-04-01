@@ -1,59 +1,81 @@
 package com.upn.fitrun
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.upn.fitrun.databinding.FragmentRegistBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+// 1. Definisikan Data Class di sini (atau di file terpisah User.kt)
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class RegistFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentRegistBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_regist, container, false)
+    ): View {
+        _binding = FragmentRegistBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegistFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegistFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnStart.setOnClickListener {
+            // Mengambil input dan menghapus spasi di awal/akhir dengan .trim()
+            val nama = binding.etName.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+
+            // Misalkan ID di XML kamu untuk re-type password adalah etRePassword
+            // Jika ID-nya beda, sesuaikan di bawah ini ya!
+            val rePassword = binding.etRePassword.text.toString().trim()
+
+            // 2. Validasi apakah ada field yang kosong
+            if (nama.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
+                Toast.makeText(context, "Harap isi semua bidang!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            // 3. Validasi Kecocokan Password
+            if (password != rePassword) {
+                binding.etRePassword.error = "Password tidak cocok!"
+                Toast.makeText(context, "Password tidak sama!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // 4. TAMPUNG KE DATA CLASS (Hanya Nama, Email, Password)
+            val userBaru = User(
+                nama = nama,
+                email = email,
+                password = password
+            )
+
+            // Log untuk memastikan data sudah masuk ke objek
+            Log.d("RegistFragment", "User baru: $userBaru")
+
+            // Simpan atau proses data userBaru di sini jika diperlukan
+            Toast.makeText(context, "Pendaftaran Berhasil, ${userBaru.nama}!", Toast.LENGTH_SHORT).show()
+
+            // 5. Pindah ke Beranda
+            findNavController().navigate(R.id.action_registFragment_to_berandaFragment2)
+        }
+
+        binding.tvLoginHere.setOnClickListener {
+            findNavController().navigate(R.id.action_registFragment_to_masukFragment)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

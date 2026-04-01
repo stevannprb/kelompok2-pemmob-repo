@@ -1,14 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.navigation.safeargs)
 }
 
 android {
     namespace = "com.upn.fitrun"
-    compileSdk = 36
+    compileSdk = 35
 
-    buildFeatures{
-        viewBinding=true
+    buildFeatures {
+        viewBinding = true
+        // Pastikan dataBinding tidak sengaja aktif jika tidak dipakai
+        dataBinding = false
     }
     
     defaultConfig {
@@ -33,6 +37,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 

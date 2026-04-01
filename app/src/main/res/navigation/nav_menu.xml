@@ -3,26 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_menu"
-    app:startDestination="@id/registFragment">
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.upn.fitrun.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_registFragment"
+            app:destination="@id/registFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/registFragment"
+        android:name="com.upn.fitrun.RegistFragment"
+        android:label="Registrasi"
+        tools:layout="@layout/fragment_regist">
+        <action
+            android:id="@+id/action_registFragment_to_berandaFragment2"
+            app:destination="@id/berandaFragment2"
+            app:popUpTo="@id/registFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_registFragment_to_masukFragment"
+            app:destination="@id/masukFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/masukFragment"
+        android:name="com.upn.fitrun.MasukFragment"
+        android:label="Masuk"
+        tools:layout="@layout/fragment_masuk">
+        <action
+            android:id="@+id/action_masukFragment_to_berandaFragment2"
+            app:destination="@id/berandaFragment2"
+            app:popUpTo="@id/masukFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/berandaFragment2"
+        android:name="com.upn.fitrun.BerandaFragment"
+        android:label="Beranda"
+        tools:layout="@layout/fragment_beranda">
+        <argument
+            android:name="currentUser"
+            app:argType="com.upn.fitrun.User" />
+        <action
+            android:id="@+id/action_berandaFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_berandaFragment2_to_add_run_Fragment"
+            app:destination="@id/add_run_Fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.upn.fitrun.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+
     <fragment
         android:id="@+id/add_run_Fragment"
         android:name="com.upn.fitrun.add_run_Fragment"
-        android:label="fragment_add_run"
+        android:label="Tambah Lari"
         tools:layout="@layout/fragment_add_run" />
-    <fragment
-        android:id="@+id/registFragment"
-        android:name="com.upn.fitrun.RegistFragment"
-        android:label="fragment_regist"
-        tools:layout="@layout/fragment_regist" />
-    <fragment
-        android:id="@+id/berandaFragment2"
-        android:name="com.upn.fitrun.BerandaFragment"
-        android:label="fragment_beranda"
-        tools:layout="@layout/fragment_beranda" />
+
 </navigation>
