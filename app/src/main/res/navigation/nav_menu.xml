@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_menu"
+    app:startDestination="@id/registFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.upn.fitrun.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/add_run_Fragment"
+        android:name="com.upn.fitrun.add_run_Fragment"
+        android:label="fragment_add_run"
+        tools:layout="@layout/fragment_add_run" />
+    <fragment
+        android:id="@+id/registFragment"
+        android:name="com.upn.fitrun.RegistFragment"
+        android:label="fragment_regist"
+        tools:layout="@layout/fragment_regist" />
+    <fragment
+        android:id="@+id/berandaFragment2"
+        android:name="com.upn.fitrun.BerandaFragment"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" />
+</navigation>
