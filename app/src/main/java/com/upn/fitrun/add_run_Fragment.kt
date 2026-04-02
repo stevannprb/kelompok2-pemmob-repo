@@ -1,59 +1,98 @@
 package com.upn.fitrun
 
+import android.app.DatePickerDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.upn.fitrun.databinding.FragmentAddRunBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [add_run_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class add_run_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding: FragmentAddRunBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentAddRunBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.etTanggal.setOnClickListener {
+            showDatePicker()
+        }
+
+        binding.btnSave.setOnClickListener {
+            simpanAktivitas()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_run, container, false)
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                calendar.set(year, month, dayOfMonth)
+
+                val formatTanggal = SimpleDateFormat(
+                    "dd MMMM yyyy",
+                    Locale("id", "ID")
+                )
+
+                binding.etTanggal.setText(
+                    formatTanggal.format(calendar.time)
+                )
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment add_run_Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            add_run_Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun simpanAktivitas() {
+        val tanggal = binding.etTanggal.text.toString().trim()
+        val jarak = binding.etJarak.text.toString().trim()
+        val durasi = binding.etDurasi.text.toString().trim()
+
+        if (tanggal.isEmpty() || jarak.isEmpty() || durasi.isEmpty()) {
+            if (tanggal.isEmpty()) binding.etTanggal.error = "Tanggal harus diisi"
+            if (jarak.isEmpty()) binding.etJarak.error = "Jarak harus diisi"
+            if (durasi.isEmpty()) binding.etDurasi.error = "Durasi harus diisi"
+            return
+        }
+
+        val aktivitas = RunActivity(
+            tanggal = tanggal,
+            jarak = jarak.toDouble(),
+            durasi = durasi.toInt()
+        )
+
+        parentFragmentManager.setFragmentResult(
+            "run_result",
+            Bundle().apply {
+                putParcelable("run_data", aktivitas)
             }
+        )
+
+        parentFragmentManager.popBackStack()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

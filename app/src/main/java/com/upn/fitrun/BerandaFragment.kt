@@ -25,6 +25,21 @@ class BerandaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        parentFragmentManager.setFragmentResultListener(
+            "run_result",
+            viewLifecycleOwner
+        ) { _, bundle ->
+
+            val aktivitas = bundle.getParcelable<RunActivity>("run_data")
+
+            aktivitas?.let {
+                binding.tvRiwayat.text =
+                    "Tanggal: ${it.tanggal}\n" +
+                            "Jarak: ${it.jarak} km\n" +
+                            "Durasi: ${it.durasi} menit"
+            }
+        }
+
         binding.btnStartRun.setOnClickListener {
             findNavController().navigate(R.id.action_berandaFragment_to_add_run_Fragment)
         }
