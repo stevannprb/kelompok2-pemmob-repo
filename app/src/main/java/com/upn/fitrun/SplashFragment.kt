@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-// Import ini penting agar binding terbaca
 import com.upn.fitrun.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
@@ -27,10 +26,12 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Tunggu 2 detik lalu pindah halaman
+        // Wait for 2 seconds then navigate
         Handler(Looper.getMainLooper()).postDelayed({
-            // ✅ PERBAIKAN: Gunakan ID action yang ada di nav_menu.xml kamu
-            findNavController().navigate(R.id.action_splash_to_beranda)
+            // Check if fragment is still attached before navigating
+            if (isAdded) {
+                findNavController().navigate(R.id.action_splashFragment_to_registFragment)
+            }
         }, 2000)
     }
 
